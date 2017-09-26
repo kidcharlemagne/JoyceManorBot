@@ -64,7 +64,7 @@ with open('urls.txt', 'r+') as f:
 
 with open('urls.txt', 'w') as f:
 	for i in song_list:
-		links = "https://www.azlyrics.com/lyrics/joycemanor/{}.html".format(i)
+		links = "https://www.plyrics.com/j/joycemanor/{}.html".format(i)
 		# print links
 		f.write(links + "\n")
 f.close()
