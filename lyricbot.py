@@ -14,8 +14,8 @@ try:
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
     api = tweepy.API(auth)
-except Exception, e:
-    print 'Authentication Failed: ' + str(e)
+except Exception as e:
+    print 'Authentication Failed: ' + e
     exit()
 
 lyrics_file = open('lyrics.txt', 'r')

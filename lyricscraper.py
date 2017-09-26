@@ -2,24 +2,25 @@
 # -*- coding: utf-8 -*-
 # lyricscraper.py - scrapes Joyce Manor lyrics from web
 from bs4 import BeautifulSoup
-import requests
+import requests, sys
 
-url = 'https://www.songlyrics.com/joyce-manor-lyrics/' 
+with open('urls.txt') as f:
+	urls = (line.strip() for line in f)
+	for url in urls:
+		# Pretty sure my IP got blacklisted, so this doesn't seem to work?
+		headers = { 'User-Agent': 'X11; U; Linux x86_64; en-US; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' }
+		# Get the webpage and create response object
+		response = requests.get(url, headers=headers)
 
-# get the webpage and create response object
-response = requests.get(url)
+		try:
+			res.raise_for_status()
+		except Exception as e:
+			print(e) 
+			exit() 
 
-# pass extracted source (response) to bs4 
-soup = BeautifulSoup(response.text, "lxml")
+		# Pass extracted source (response) to bs4
+		soup = BeautifulSoup(response.text, "html.parser")
 
-# Extracting URLs from the attribute href in the <a> tags.
-for tag in soup.find_all(class_ = "tracklist"):
-    
-
-# songs = []
-
-# for tag in soup.select('a'):
-#    link = "http://www.plyrics.com/" + tag.get('href')
-#    songs.append(link)
-    
-# print songs
+		# Extract URLs 
+		for lyrics in site.find_all("div", {"class":""}):        	
+			print lyrics.text 
